@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="<%= page_meta.meta_description %>">
+    <meta name="keywords" content="<%= page_meta.meta_keywords %>">
+    <title><%= page_meta.title %></title>
+  </head>
+  <body>
+    <div class='container'>
+      <h1 class='title'><%= page_meta.h1 %></h1>
+      <nav class='nav'>
+        <div class='nav__burger'><span class='nav__burger-line'></span></div>
+        <%= nav.map((el) => `<a class='nav__link' href=${el.href}>${el.text}</a>`).join('') %>
+      </nav>
+      <ul class='breadcrumbs'>
+        <%= breadcrumbs.map((el) => `<li class='breadcrumbs__item'><a href=${el.href}>${el.text}</a></li>`).join('>') %>
+      </ul>
+      <div class='products'>
+        <h2 class='products__title'>Stock</h2>
+        <div class='products__wrapper'>
+          <%= stock.map((el) => `
+            <div class='stock'>
+              <h3 class='stock__title'>${el.title}</h3>
+              <div class='stock__desc'>
+                <div class='stock__img-wrapper'>
+                  <img class='stock__img' src='/static/${el.image}' />
+                </div>
+                <ul class='stock__features'>
+                  <li class='stock__features-item'>Make: ${el.make}</li>
+                  <li class='stock__features-item'>Model: ${el.model}</li>
+                  <li class='stock__features-item'>Type: ${el.type}</li>
+                  <li class='stock__features-item'>Year: ${el.year}</li>
+                  <li class='stock__features-item'>Mileage: ${el.mileage} ${el.mileage_measure}</li>
+                  <li class='stock__features-item'>Axle Configuration: ${el.axle_configuration}</li>
+                  <li class='stock__features-item'>Power: ${el.power} ${el.power_measure}</li>
+                  <li class='stock__features-item'>Payload: ${el.payload}</li>
+                  <li class='stock__features-item'>Gross Weight: ${el.gross_weight}</li>
+                </ul>
+              </div>
+              <div class='stock__footer'>
+                <p class='stock__price'>${el.price} ${el.price_currency}</p>
+                <a class='stock__detail' href=${el.href}>Detail</a>
+              </div>
+            </div>
+          `).join('') %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+  
